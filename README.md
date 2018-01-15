@@ -16,7 +16,7 @@
 	}
 #### Step 2. 在module中添加compile 'com.github.wangdaqi77:allow-url:1.0.1'	
 
-#### Step 3. 在自定义Application的类里调用AllowUrl.create().io(IO);
+#### Step 3. 初始化AllowUrl.create().io(IO); 建议在在自定义Application的oncreate()初始化;
 
 #### Step 4. 具体使用例如加载图片
             AllowUrl.load(AbsRuleHandler, ImageView, new OnAllowUrlSuccessListener<T>() {
