@@ -1,7 +1,7 @@
 # allow-url 从服务器获取可用的url的缓存框架
 
-## demo
-[以七牛云为例的demo](https://github.com/wangdaqi77/allow-url)
+## DEMO
+[以七牛云为例的demo](https://github.com/wangdaqi77/AllowUrlForQiNiu)
 
 ## 使用方式
 
@@ -31,10 +31,10 @@
 
 #### IO
 数据处理，包含请求数据和磁盘缓存
-##### IAllowUrNetFramework<P>
-请求数据
-##### IAllowUrDiskFramework
-磁盘缓存
+	##### IAllowUrNetFramework<P>
+	请求数据
+	##### IAllowUrDiskFramework
+	磁盘缓存
 
 #### AbsRuleHandler
 凭证的规则
