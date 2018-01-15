@@ -30,7 +30,7 @@
 ## 需要实现的接口与类
 
 ### IO
-数据处理，包含请求数据和磁盘缓存
+用于创建请求数据和磁盘缓存框架
 ##### IAllowUrNetFramework<P>
 	请求数据
 ##### IAllowUrDiskFramework
