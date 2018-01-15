@@ -8,24 +8,27 @@
 ### 依赖
 #### Step 1. 在project的build的repositories{}中添加maven { url 'https://jitpack.io' }
 
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 #### Step 2. 在module中添加compile 'com.github.wangdaqi77:allow-url:1.0.1'	
-
+dependencies {
+    ...
+    compile 'com.github.wangdaqi77:allow-url:1.0.1'
+}
 #### Step 3. 初始化AllowUrl.create().io(IO); 建议在在自定义Application的oncreate()初始化;
 
 #### Step 4. 具体使用例如加载图片
-            AllowUrl.load(AbsRuleHandler, ImageView, new OnAllowUrlSuccessListener<T>() {
-                @Override
-                public void success(ImageView target, String allowUrl) {
-                    // 加载图片 ...
-                    Log.i("TAG", "url : " + allowUrl);
-                }
-            });
+AllowUrl.load(AbsRuleHandler, ImageView, new OnAllowUrlSuccessListener<T>() {
+    @Override
+    public void success(ImageView target, String allowUrl) {
+        // 加载图片 ...
+        Log.i("TAG", "url : " + allowUrl);
+    }
+});
 
 ## 需要实现的接口与类
 
