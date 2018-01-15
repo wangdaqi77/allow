@@ -27,14 +27,14 @@
                 }
             });
 
-### 需要实现的接口与类
+## 需要实现的接口与类
 
-#### IO
+### IO
 数据处理，包含请求数据和磁盘缓存
-	##### IAllowUrNetFramework<P>
+##### IAllowUrNetFramework<P>
 	请求数据
-	##### IAllowUrDiskFramework
+##### IAllowUrDiskFramework
 	磁盘缓存
 
-#### AbsRuleHandler
+### AbsRuleHandler
 凭证的规则
