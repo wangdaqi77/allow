@@ -1,4 +1,4 @@
-# allow-url 从服务器获取可用的url的缓存框架
+# allow-url 获取凭证框架
 
 ## DEMO
 [以七牛云为例的demo](https://github.com/wangdaqi77/AllowUrlForQiNiu)
