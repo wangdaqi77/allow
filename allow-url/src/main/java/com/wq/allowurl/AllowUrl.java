@@ -1,5 +1,7 @@
 package com.wq.allowurl;
 
+import android.text.TextUtils;
+
 import com.wq.allowurl.base.AbsRuleHandler;
 import com.wq.allowurl.callback.OnAllowUrlSuccessListener;
 import com.wq.allowurl.inter.IO;
@@ -35,11 +37,16 @@ public class AllowUrl {
         if (null == io) {
             throw new NullPointerException("please call AllowUrl.create().io() when application init");
         }
+
+        String key = ruleHandler.getKey();
+        if (TextUtils.isEmpty(key)) {
+            callBack.success(target, "");
+            return;
+        }
+
         if (connectBuffer == null) {
             connectBuffer = new HashMap<>();
         }
-
-        String key = ruleHandler.getKey();
 
         if (connectBuffer.get(key) == null) {
             GetAllowUrlBuffer getQnDownUrlBuffer = new GetAllowUrlBuffer<>(io.netFramework(), io.diskFramework(), ruleHandler);
