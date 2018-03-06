@@ -6,15 +6,14 @@ import java.io.Serializable;
 import java.lang.ref.SoftReference;
 
 /**
- *
  * Create by wq on 2018/1/11.
  */
 
-public class BufferEntity<T,V extends Serializable> {
+public class BufferEntity<T, V extends Serializable> {
     private SoftReference<T> target = null;
-    private SoftReference<OnAllowValueCallBack<T,V>> callback;
+    private SoftReference<OnAllowValueCallBack<T, V>> callback;
 
-    public BufferEntity(T target, OnAllowValueCallBack<T,V> callback) {
+    public BufferEntity(T target, OnAllowValueCallBack<T, V> callback) {
         this.target = new SoftReference<>(target);
         this.callback = new SoftReference<>(callback);
     }

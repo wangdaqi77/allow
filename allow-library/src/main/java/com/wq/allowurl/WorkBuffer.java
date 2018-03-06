@@ -17,14 +17,14 @@ import java.util.List;
  * 一个key对应一个缓冲区
  */
 class WorkBuffer<P, T, V extends Serializable> implements NetCallBack {
-    private AbsRuleHandler<P> mRuleHandler;
+    private AbsRuleHandler<P, V> mRuleHandler;
     private IDisk mDisk;
     private INet<P> mNet;
     private List<SoftReference<BufferEntity<T, V>>> mBuffer = new ArrayList<>();
     private V mAllowValue;
     private boolean mRequesting;
 
-    WorkBuffer(INet<P> net, IDisk disk, AbsRuleHandler<P> ruleHandler) {
+    WorkBuffer(INet<P> net, IDisk disk, AbsRuleHandler<P, V> ruleHandler) {
         this.mNet = net;
         this.mDisk = disk;
         this.mRuleHandler = ruleHandler;
