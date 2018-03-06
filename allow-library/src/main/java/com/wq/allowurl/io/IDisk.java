@@ -1,6 +1,6 @@
 package com.wq.allowurl.io;
 
-import com.wq.allowurl.base.AbsRuleHandler;
+import com.wq.allowurl.rule.AbsRuleHandler;
 
 import java.io.Serializable;
 

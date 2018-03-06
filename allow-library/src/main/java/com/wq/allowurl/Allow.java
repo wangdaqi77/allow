@@ -1,6 +1,6 @@
 package com.wq.allowurl;
 
-import com.wq.allowurl.base.AbsRuleHandler;
+import com.wq.allowurl.rule.AbsRuleHandler;
 import com.wq.allowurl.callback.OnAllowValueCallBack;
 import com.wq.allowurl.io.IO;
 
@@ -12,10 +12,10 @@ import java.util.Map;
  * Create by wq on 2018/1/11.
  */
 @SuppressWarnings("all")
-public class Allow {
+public class Allow<P, V extends Serializable> {
     private static Allow INSTANCE;
     private static Map<String, WorkBuffer> connectBuffer;
-    private IO io;
+    private IO<P, V> io;
 
     private Allow() {
     }
@@ -31,7 +31,7 @@ public class Allow {
         return INSTANCE;
     }
 
-    public static <T,V extends Serializable> void load(AbsRuleHandler ruleHandler, T target, OnAllowValueCallBack<T,V> callBack) {
+    public static <T, V extends Serializable> void load(AbsRuleHandler ruleHandler, T target, OnAllowValueCallBack<T, V> callBack) {
         IO io = create().io;
         if (null == io) {
             throw new NullPointerException("please call AllowUrl.create().io() when application init");

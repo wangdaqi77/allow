@@ -1,6 +1,6 @@
 package com.wq.allowurl.callback;
 
-import com.wq.allowurl.base.AbsRuleHandler;
+import com.wq.allowurl.rule.AbsRuleHandler;
 import com.wq.allowurl.io.INet;
 
 import java.io.Serializable;

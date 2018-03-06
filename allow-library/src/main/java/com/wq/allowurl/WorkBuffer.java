@@ -1,6 +1,6 @@
 package com.wq.allowurl;
 
-import com.wq.allowurl.base.AbsRuleHandler;
+import com.wq.allowurl.rule.AbsRuleHandler;
 import com.wq.allowurl.callback.NetCallBack;
 import com.wq.allowurl.callback.OnAllowValueCallBack;
 import com.wq.allowurl.entity.BufferEntity;
@@ -16,15 +16,15 @@ import java.util.List;
  * Create by wq on 2018/1/11.
  * 一个key对应一个缓冲区
  */
-class WorkBuffer<P, T, V extends Serializable> implements NetCallBack {
+class WorkBuffer<P, T, V extends Serializable> implements NetCallBack<V> {
     private AbsRuleHandler<P, V> mRuleHandler;
-    private IDisk mDisk;
+    private IDisk<V> mDisk;
     private INet<P, V> mNet;
     private List<SoftReference<BufferEntity<T, V>>> mBuffer = new ArrayList<>();
     private V mAllowValue;
     private boolean mRequesting;
 
-    WorkBuffer(INet<P, V> net, IDisk disk, AbsRuleHandler<P, V> ruleHandler) {
+    WorkBuffer(INet<P, V> net, IDisk<V> disk, AbsRuleHandler<P, V> ruleHandler) {
         this.mNet = net;
         this.mDisk = disk;
         this.mRuleHandler = ruleHandler;
@@ -61,9 +61,9 @@ class WorkBuffer<P, T, V extends Serializable> implements NetCallBack {
     }
 
     @Override
-    public void success(Serializable allowValue) {
+    public void success(V allowValue) {
         try {
-            mAllowValue = (V) allowValue;
+            mAllowValue = allowValue;
             mRuleHandler.setAllowValue(mAllowValue);
             if (null != mAllowValue) {
                 mRequesting = false;

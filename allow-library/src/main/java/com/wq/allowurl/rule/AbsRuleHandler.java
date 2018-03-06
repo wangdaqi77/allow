@@ -1,6 +1,4 @@
-package com.wq.allowurl.base;
-
-import com.wq.allowurl.rule.IRuleHandle;
+package com.wq.allowurl.rule;
 
 import java.io.Serializable;
 
