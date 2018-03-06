@@ -14,10 +14,10 @@
 		maven { url 'https://jitpack.io' }
 	    }
 	}
-#### Step 2. 在module中添加compile 'com.github.wangdaqi77:allow-url:1.0.1'	
+#### Step 2. 在module中添加compile 'com.github.wangdaqi77:allow:1.0.7'
 	dependencies {
 	    ...
-	    compile 'com.github.wangdaqi77:allow-url:1.0.1'
+	    compile 'com.github.wangdaqi77:allow:1.0.7'
 	}
 #### Step 3. 初始化Allow.create().io(IO); 建议在在自定义Application的oncreate()初始化;
     @Override
