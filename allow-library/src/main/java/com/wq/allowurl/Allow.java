@@ -1,11 +1,10 @@
 package com.wq.allowurl;
 
-import android.text.TextUtils;
-
 import com.wq.allowurl.base.AbsRuleHandler;
-import com.wq.allowurl.callback.OnAllowUrlSuccessListener;
-import com.wq.allowurl.inter.IO;
+import com.wq.allowurl.callback.OnAllowValueCallBack;
+import com.wq.allowurl.io.IO;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,34 +12,34 @@ import java.util.Map;
  * Create by wq on 2018/1/11.
  */
 @SuppressWarnings("all")
-public class AllowUrl {
-    private static AllowUrl INSTANCE;
-    private static Map<String, GetAllowUrlBuffer> connectBuffer;
+public class Allow {
+    private static Allow INSTANCE;
+    private static Map<String, WorkBuffer> connectBuffer;
     private IO io;
 
-    private AllowUrl() {
+    private Allow() {
     }
 
-    public static AllowUrl create() {
+    public static Allow create() {
         if (INSTANCE == null) {
-            synchronized (AllowUrl.class) {
+            synchronized (Allow.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new AllowUrl();
+                    INSTANCE = new Allow();
                 }
             }
         }
         return INSTANCE;
     }
 
-    public static <T> void load(AbsRuleHandler ruleHandler, T target, OnAllowUrlSuccessListener<T> callBack) {
+    public static <T,V extends Serializable> void load(AbsRuleHandler ruleHandler, T target, OnAllowValueCallBack<T,V> callBack) {
         IO io = create().io;
         if (null == io) {
             throw new NullPointerException("please call AllowUrl.create().io() when application init");
         }
 
         String key = ruleHandler.getKey();
-        if (TextUtils.isEmpty(key)) {
-            callBack.success(target, "");
+        if (null == key || "" == key) {
+            callBack.success(target, null);
             return;
         }
 
@@ -49,11 +48,11 @@ public class AllowUrl {
         }
 
         if (connectBuffer.get(key) == null) {
-            GetAllowUrlBuffer getQnDownUrlBuffer = new GetAllowUrlBuffer<>(io.netFramework(), io.diskFramework(), ruleHandler);
+            WorkBuffer getQnDownUrlBuffer = new WorkBuffer<>(io.netFramework(), io.diskFramework(), ruleHandler);
             connectBuffer.put(key, getQnDownUrlBuffer);
         }
 
-        GetAllowUrlBuffer getQnDownUrlBuffer = connectBuffer.get(key);
+        WorkBuffer getQnDownUrlBuffer = connectBuffer.get(key);
         getQnDownUrlBuffer.start(target, callBack);
     }
 

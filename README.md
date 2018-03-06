@@ -19,18 +19,18 @@
 	    ...
 	    compile 'com.github.wangdaqi77:allow-url:1.0.1'
 	}
-#### Step 3. 初始化AllowUrl.create().io(IO); 建议在在自定义Application的oncreate()初始化;
+#### Step 3. 初始化Allow.create().io(IO); 建议在在自定义Application的oncreate()初始化;
     @Override
     public void onCreate() {
         super.onCreate();
-        AllowUrl.create().io(IO);
+        Allow.create().io(IO);
     }
 #### Step 4. 具体使用例如加载图片
-	AllowUrl.load(AbsRuleHandler, ImageView, new OnAllowUrlSuccessListener<T>() {
+	Allow.load(AbsRuleHandler, ImageView, new OnAllowValueCallBack<ImageView, String>() {
 	    @Override
-	    public void success(ImageView target, String allowUrl) {
+	    public void success(ImageView target, String allowValue) {
 		// 加载图片 ...
-		Log.i("TAG", "url : " + allowUrl);
+		Log.i("TAG", "url : " + allowValue);
 	    }
 	});
 
@@ -38,9 +38,9 @@
 
 ### IO
 用于创建请求数据和磁盘缓存框架
-##### IAllowUrNetFramework<P>
+##### INet<P>
 	请求数据
-##### IAllowUrDiskFramework
+##### IDisk
 	磁盘缓存
 
 ### AbsRuleHandler

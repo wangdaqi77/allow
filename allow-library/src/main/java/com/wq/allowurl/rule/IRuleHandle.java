@@ -1,10 +1,12 @@
-package com.wq.allowurl.inter;
+package com.wq.allowurl.rule;
+
+import java.io.Serializable;
 
 /**
  * Create by wq on 2018/1/11.
  */
 
-public interface IRuleHandle {
+public interface IRuleHandle<V extends Serializable> {
 
     /**
      * 内存缓存和磁盘缓存的key
@@ -19,11 +21,11 @@ public interface IRuleHandle {
     /**
      * 获取可以使用的url
      */
-    String getAllowUrl();
+    V getAllowValue();
 
     /**
      * 设置可以使用的url
      */
-    void setAllowUrl(String allowUrl);
+    void setAllowValue(V allowValue);
 
 }
