@@ -8,7 +8,7 @@ import com.wq.allowurl.io.IDisk;
 import com.wq.allowurl.io.INet;
 
 import java.io.Serializable;
-import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ class WorkBuffer<P, T, V extends Serializable> implements NetCallBack<V> {
     private AbsRuleHandler<P, V> mRuleHandler;
     private IDisk<V> mDisk;
     private INet<P, V> mNet;
-    private List<SoftReference<BufferEntity<T, V>>> mBuffer = new ArrayList<>();
+    private List<WeakReference<BufferEntity<T, V>>> mBuffer = new ArrayList<>();
     private V mAllowValue;
     private boolean mRequesting;
 
@@ -31,7 +31,7 @@ class WorkBuffer<P, T, V extends Serializable> implements NetCallBack<V> {
     }
 
     private void append(T target, OnAllowValueCallBack<T, V> callBack) {
-        mBuffer.add(new SoftReference<>(new BufferEntity<>(target, callBack)));
+        mBuffer.add(new WeakReference<>(new BufferEntity<>(target, callBack)));
     }
 
     void start(T target, OnAllowValueCallBack<T, V> callBack) {
@@ -67,7 +67,7 @@ class WorkBuffer<P, T, V extends Serializable> implements NetCallBack<V> {
             mRuleHandler.setAllowValue(mAllowValue);
             if (null != mAllowValue) {
                 mRequesting = false;
-                for (SoftReference<BufferEntity<T, V>> next : mBuffer) {
+                for (WeakReference<BufferEntity<T, V>> next : mBuffer) {
                     if (next.get() != null) {
                         next.get().success(mAllowValue);
                     }
